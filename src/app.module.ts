@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
+
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
@@ -15,6 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: process.env['DATABASE_NAME'],
       synchronize: true,
     }),
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
