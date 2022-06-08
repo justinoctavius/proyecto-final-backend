@@ -1,7 +1,7 @@
 import {
   Column,
   Entity,
-  OneToMany,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -11,7 +11,7 @@ import { Category } from './category.entity';
 
 @Entity()
 export class Transaction {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -26,6 +26,7 @@ export class Transaction {
   @Column({ enum: TransactionType })
   type: TransactionType;
 
-  @OneToOne(() => Category)
+  @OneToOne(() => Category, { eager: true })
+  @JoinColumn({ name: 'category_id' })
   category: Category;
 }

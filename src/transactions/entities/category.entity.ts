@@ -3,7 +3,7 @@ import { IconType } from '../constants/category.constants';
 
 @Entity()
 export class Category {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
