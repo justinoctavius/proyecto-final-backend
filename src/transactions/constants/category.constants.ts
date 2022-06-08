@@ -1,0 +1,14 @@
+export enum IconType {
+  TRANSPORT = 'TRANSPORT',
+  LEADING = 'LEADING',
+  OTHERS = 'OTHERS',
+  HOME = 'HOME',
+  ROUTINE = 'ROUTINE',
+  FOOD = 'FOOD',
+  FAMILY = 'FAMILY',
+  GIFS = 'GIFS',
+  EDUCATION = 'EDUCATION',
+  COFFEE = 'COFFEE',
+  HEALTH = 'HEALTH',
+  WORK = 'WORK',
+}
