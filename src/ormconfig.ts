@@ -10,9 +10,8 @@ const config: ConnectionOptions = {
   migrationsTableName: 'migrations',
   synchronize: false,
   migrationsRun: true,
-  entities: [__dirname + '/**/*.entity{.js, .ts}'],
+  entities: ['./**/*.entity{.js, .ts}'],
   migrations: [__dirname + '/migrations/*{.ts, .js}'],
-  migrationsTransactionMode: 'all',
   logging: true,
 };
 

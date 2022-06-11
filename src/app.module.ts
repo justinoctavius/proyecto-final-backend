@@ -4,16 +4,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import config from './ormconfig';
+import * as config from './ormconfig';
 
 import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      ...config,
-      autoLoadEntities: true,
-    }),
+    TypeOrmModule.forRoot({ autoLoadEntities: true, ...config }),
     TransactionsModule,
   ],
   controllers: [AppController],
