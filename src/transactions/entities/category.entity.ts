@@ -13,7 +13,7 @@ export class Category {
   description: string;
 
   @Column({ enum: IconType })
-  iconType: IconType;
+  icon_type: IconType;
 
   @Column()
   color: string;

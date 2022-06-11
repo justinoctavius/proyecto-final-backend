@@ -8,8 +8,10 @@ services:
       target: ${NODE_ENV}
     volumes:
       - ./:/src/app
-      - ./src/app/node_modules
-    command: npm run start:dev
+      - /src/app/node_modules
+    command: 
+      - npm run start:dev
+      - npm run migration:run
     env_file:
       - './docker-secrets/api.env'
     ports:
