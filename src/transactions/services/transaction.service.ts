@@ -1,11 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 
 import { Transaction } from '../entities/transaction.entity';
 import { Category } from '../entities/category.entity';
 
 import { AddTransactionDto } from '../dtos/add-transaction.dto';
+import { TransactionQueryParams } from '../dtos/transaction-query-params.dto';
 
 @Injectable()
 export class TransactionService {
@@ -14,10 +15,12 @@ export class TransactionService {
     private transactionsRepository: Repository<Transaction>,
   ) {}
 
-  async findAll() {
+  async findAll(queryParams: TransactionQueryParams) {
     try {
       Logger.log('[Info]: Start find transactions');
-      const transactions = await this.transactionsRepository.find();
+      const transactions = await this.transactionsRepository.find({
+        where: { ...queryParams },
+      });
       Logger.log('[Info]: End find transactions');
       return transactions;
     } catch (error) {
@@ -27,11 +30,15 @@ export class TransactionService {
   }
 
   async add(transactionDto: AddTransactionDto) {
+    console.log(JSON.stringify(transactionDto, undefined, 2));
     try {
       Logger.log('Start save transaction');
       const category = new Category();
       category.id = transactionDto.category_id;
-      await this.transactionsRepository.save({ ...transactionDto, category });
+      await this.transactionsRepository.save({
+        ...transactionDto,
+        category,
+      });
       Logger.log('End save transaction');
     } catch (error) {
       Logger.error('[Error]: Error on save transaction: ' + error);

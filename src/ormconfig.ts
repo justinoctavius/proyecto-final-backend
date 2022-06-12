@@ -1,4 +1,6 @@
 import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
+import { Category } from './transactions/entities/category.entity';
+import { Transaction } from './transactions/entities/transaction.entity';
 
 const config: ConnectionOptions = {
   type: 'postgres',
@@ -10,9 +12,9 @@ const config: ConnectionOptions = {
   migrationsTableName: 'migrations',
   synchronize: false,
   migrationsRun: true,
-  entities: ['./**/*.entity{.js, .ts}'],
+  entities: [Transaction, Category],
   migrations: [__dirname + '/migrations/*{.ts, .js}'],
-  logging: true,
+  logging: false,
 };
 
 export = config;

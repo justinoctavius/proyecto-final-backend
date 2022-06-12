@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -26,7 +26,9 @@ export class Transaction {
   @Column({ enum: TransactionType })
   type: TransactionType;
 
-  @OneToOne(() => Category, { eager: true })
+  @ManyToOne(() => Category, (category) => category.transactions, {
+    eager: true,
+  })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 }

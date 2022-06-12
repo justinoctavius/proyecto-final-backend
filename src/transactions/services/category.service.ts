@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from '../entities/category.entity';
 import { Repository } from 'typeorm';
@@ -10,6 +10,9 @@ export class CategoryService {
     private categoryRepository: Repository<Category>,
   ) {}
   async findAll() {
-    return await this.categoryRepository.find();
+    Logger.log('Start getting categories');
+    const categories = await this.categoryRepository.find();
+    Logger.log('End getting categories');
+    return categories;
   }
 }
