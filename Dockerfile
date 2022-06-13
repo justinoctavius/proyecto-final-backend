@@ -7,7 +7,7 @@ RUN npm run build
 EXPOSE 3000
 
 
-FROM node:16-alpine as production
+FROM node:16-alpine AS production
 ENV PORT=8080
 WORKDIR /src/app
 COPY --from=development /src/app .
